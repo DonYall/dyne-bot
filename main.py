@@ -1,24 +1,26 @@
 import discord
 from env import token
+from discord.ext import commands
 
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix="what the sigma ", intents=intents)
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f"We have logged in as {client.user}")
+    print(f"{bot.user} is connected. version {discord.__version__}")
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} commands.")
+    except Exception as e:
+        print(e)
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith("$hello"):
-        await message.channel.send("Hello!")
+@bot.hybrid_command()
+async def ping(ctx):
+    await ctx.send("pong")
 
 
-client.run(token)
+bot.run(token)
