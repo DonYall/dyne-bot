@@ -23,4 +23,9 @@ async def ping(ctx):
     await ctx.send("pong")
 
 
+@bot.hybrid_command()
+async def riyyan(ctx):
+    await ctx.send("homosexual")
+
+
 bot.run(token)
