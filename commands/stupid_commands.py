@@ -4,10 +4,9 @@ import random
 
 
 class StupidCommands(commands.Cog):
-    messages_until_false = 5
-
     def __init__(self, bot):
         self.bot = bot
+        self.messages_until_false = 5
 
     @commands.hybrid_command(name="ping")
     async def ping(self, ctx):
@@ -32,15 +31,14 @@ class StupidCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        global messages_until_false
         if message.author.bot:
             return
 
-        if messages_until_false == 0:
+        if self.messages_until_false == 0:
             await message.reply("false")
-            messages_until_false = random.randint(15, 40)
+            self.messages_until_false = random.randint(15, 20)
         else:
-            messages_until_false -= 1
+            self.messages_until_false -= 1
 
 
 async def setup(bot):
