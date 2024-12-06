@@ -11,7 +11,10 @@ bot = commands.Bot(command_prefix="what the sigma ", intents=intents)
 
 async def main():
     async with bot:
+        await bot.load_extension("commands.dev_commands")
         await bot.load_extension("commands.stupid_commands")
+        await bot.load_extension("commands.faction_commands")
+        await bot.load_extension("commands.faction_management")
         await bot.start(token)
 
 
