@@ -1,5 +1,5 @@
 import discord
-from env import token
+from env import token, alt_token
 from discord.ext import commands
 import asyncio
 
@@ -15,6 +15,11 @@ async def main():
         await bot.load_extension("commands.stupid_commands")
         await bot.load_extension("commands.faction_commands")
         await bot.load_extension("commands.faction_management")
+        await bot.load_extension("commands.battle_commands")
+        await bot.load_extension("commands.user_commands")
+        await bot.load_extension("commands.shop_commands")
+        await bot.load_extension("commands.faction_shop_commands")
+        await bot.load_extension("commands.co_op_commands")
         await bot.start(token)
 
 

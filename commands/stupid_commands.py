@@ -28,6 +28,7 @@ class StupidCommands(commands.Cog):
             "WÆEH",
             "is maahir in the kitchen again",
             "im going back to 920",
+            "baobab",
         ]
 
     @commands.hybrid_command(name="ping")
@@ -42,9 +43,7 @@ class StupidCommands(commands.Cog):
     async def on_ready(self):
         print(f"{self.bot.user} is connected.")
         try:
-            activity = discord.Streaming(
-                name="Minecraft", url="https://youtube.com/watch?v=QMXBGUeX_c4"
-            )
+            activity = discord.Streaming(name="Minecraft", url="https://youtube.com/watch?v=QMXBGUeX_c4")
             await self.bot.change_presence(activity=activity)
             synced = await self.bot.tree.sync()
             print(f"Synced {len(synced)} commands.")
@@ -58,16 +57,14 @@ class StupidCommands(commands.Cog):
 
         if self.messages_until_false == 0:
             await message.reply("false")
-            self.messages_until_false = random.randint(15, 20)
+            self.messages_until_false = random.randint(15, 30)
         else:
             self.messages_until_false -= 1
 
     @commands.hybrid_command(name="spam")
     async def spam_ping(self, ctx, user: discord.Member):
         for _ in range(10):
-            await ctx.channel.send(
-                user.mention + " " + random.choice(self.stupid_words)
-            )
+            await ctx.channel.send(user.mention + " " + random.choice(self.stupid_words))
 
 
 async def setup(bot):

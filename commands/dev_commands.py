@@ -7,9 +7,6 @@ class DevCommands(commands.Cog):
 
     @commands.hybrid_command(name="reload", description="Reload a cog.")
     async def reload(self, ctx, cog: str):
-        """
-        Reloads a cog.
-        """
         try:
             await self.bot.reload_extension(f"commands.{cog}")
             await ctx.send(f"Reloaded {cog}.")
